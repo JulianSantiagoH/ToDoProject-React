@@ -20,18 +20,18 @@ function App() {
     },
   ]);
 
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
 
-  const searchingTask = task.filter(task => task.taskDescription.toLowerCase().includes(search.toLowerCase()))
+  const searchingTask = task.filter((task) =>
+    task.taskDescription.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div>
-      <div>
-        <h1>My TODOs</h1>
-        <SearchBoard newSearchFilter = {setSearch}/>
-        <TaskBoard taskData={searchingTask} />
-        <AddTaskButton />
-      </div>
+    <div className="containerToDo">
+      <h1 className="titleToDo">My TODOs</h1>
+      <SearchBoard newSearchFilter={setSearch} />
+      <TaskBoard taskData={searchingTask} />
+      <AddTaskButton newTask={setTask} />
     </div>
   );
 }

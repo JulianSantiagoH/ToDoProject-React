@@ -1,14 +1,26 @@
+import "./TaskBoard.css";
+import checkIcon from "../../assets/icon/checkIcon.svg";
+import deleteIcon from "../../assets/icon/deleteIcon.svg";
+
 function TaskBoard({ taskData }) {
   return (
-    <>
-      {Object.values(taskData.map((item) => {
-        return (
-            <div key={item.id}>
-                <h1>{item.taskDescription}</h1>
+    <div className="containerTask">
+      {Object.values(
+        taskData.map((item) => {
+          return (
+            <div className="taskBody" key={item.id}>
+              <button className="checkButton">
+                <img src={checkIcon} alt="" />
+              </button>
+              <h1>{item.taskDescription}</h1>
+              <button className="deleteButton">
+                <img src={deleteIcon} alt="" />
+              </button>
             </div>
-        );
-      }))}
-    </>
+          );
+        })
+      )}
+    </div>
   );
 }
 

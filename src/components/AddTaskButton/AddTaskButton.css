@@ -1,0 +1,63 @@
+.buttonMore {
+  background-color: #d9d9d9;
+  border-radius: 60px;
+  border: none;
+  box-shadow: 0 0 5px black;
+  height: 52px;
+  margin: 0 31px 17px auto;
+  width: 55px;
+}
+
+.boxShadow {
+    background-color: rgba(0, 0, 0, 0.5); 
+    height: 100%;
+    margin-top: -50px;
+    position: absolute;
+    width: 100%;
+  }
+  
+
+.modalNewTask {
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -60%);
+  width: 60vw;
+}
+
+.titleModal {
+  font-size: 35px;
+}
+
+.inputModal {
+  border-radius: 10px;
+  height: 100px;
+  text-align: center;
+  width: 350px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 140px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.buttonCheck {
+  background-color: #bcffcb;
+  border: none;
+  height: 50px;
+  width: 150px;
+}
+
+.buttonDelete {
+  background-color: #ffaaaa;
+  border: none;
+  height: 50px;
+  width: 150px;
+}
