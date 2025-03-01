@@ -1,34 +1,4 @@
-.containerTask {
-  align-items: center;
-  background-color: #e1f7ff;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  font-size: 9px;
-  margin-top: 5vh;
-  max-height: 500px;
-  overflow-y: auto;
-  width: 60vw;
-}
-
-.taskBody{
-    align-items: center;
-    background-color: #FFFFFF;
-    border-radius: 30px;
-    display: flex;
-    height: 7vh;
-    margin-bottom: 22px;
-    margin-top: 22px;
-    text-align: center;
-    width: 50vw;
-}
-
-.checkButton{
-    margin-left: 4vw;
-    margin-right: auto;
-}
-
-.deleteButton{
-    margin-left: auto;
-    margin-right: 4vw;
+.iconButton{
+    width: 20px;
+    height: 20px;
 }
