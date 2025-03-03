@@ -3,7 +3,7 @@ import checkIcon from "../../assets/icon/checkIcon.png";
 import deleteIcon from "../../assets/icon/deleteIcon.png";
 import favoriteIcon from "../../assets/icon/favoriteIcon.png";
 
-function TaskBoard({ taskData, dateSelected, setTaskData }) {
+function TaskBoard({ taskData, dateSelected, setTaskData,favoriteSection }) {
   const testingGettingId = (id) => {
     setTaskData(
       taskData.map((data) =>
@@ -22,20 +22,62 @@ function TaskBoard({ taskData, dateSelected, setTaskData }) {
     );
   };
 
-  // const deleteTask = (id) => {
-  //   setTaskData(
-  //     taskData.map((data) =>
-  //       data.id === id
-  //         ? data.splice(index,id)
-  //         : data
-  //     )
-  //   );
-  // };
+  const deleteTask = (id) => {
+    setTaskData(
+      taskData.filter(data=> data.id !== id)
+    );
+  };
+
+  const favoriteData=taskData.filter(item=>item.favorite)
+
+  console.log(taskData)
 
   return (
     <div className="containerTask">
-      {dateSelected === null
-        ? Object.values(
+      {favoriteSection === true ? (
+        favoriteData.map((item)=>{
+          return(
+            <div className="taskBody" key={item.id}>
+                  <button
+                    className="checkButton"
+                    onClick={() => {
+                      testingGettingId(item.id);
+                    }}
+                  >
+                    <img src={checkIcon} alt="Check Button" />
+                  </button>
+                  <h1>{item.taskDescription}</h1>
+                  <button
+                    className="favoriteButton"
+                    onClick={() => favoriteModifier(item.id)}
+                  >
+                    <img src={favoriteIcon} alt="Favorite Button" />
+                  </button>
+                  <button className="deleteButton" onClick={()=>deleteTask(item.id)}>
+                    <img
+                      className="iconButton"
+                      src={deleteIcon}
+                      alt="Delete Button"
+                    />
+                  </button>
+
+                  {item.completed === true ? (
+                    <h1>Completed</h1>
+                  ) : (
+                    <h1>In Process</h1>
+                  )}
+
+                  {item.favorite === true ? (
+                    <h1>added to favorite</h1>
+                  ) : (
+                    <h1>add to favorite</h1>
+                  )}
+                </div>
+          )
+        })
+     
+      ): dateSelected === null ? 
+          (Object.values(
             taskData.map((item) => {
               return (
                 <div className="taskBody" key={item.id}>
@@ -54,7 +96,7 @@ function TaskBoard({ taskData, dateSelected, setTaskData }) {
                   >
                     <img src={favoriteIcon} alt="Favorite Button" />
                   </button>
-                  <button className="deleteButton">
+                  <button className="deleteButton" onClick={()=>deleteTask(item.id)}>
                     <img
                       className="iconButton"
                       src={deleteIcon}
@@ -76,9 +118,8 @@ function TaskBoard({ taskData, dateSelected, setTaskData }) {
                 </div>
               );
             })
-          )
-        : taskData
-            .filter((date) => date.date === dateSelected)
+          ))
+        : taskData.filter((date) => date.date === dateSelected)
             .map((item) => {
               return (
                 <div className="taskBody" key={item.id}>

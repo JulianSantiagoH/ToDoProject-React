@@ -12,7 +12,7 @@ function App() {
       taskDescription: "Preparate a coffee",
       date: "2025-02-25",
       group: null,
-      favorite:false,
+      favorite:true,
       completed:false,
     },
     {
@@ -20,7 +20,7 @@ function App() {
       taskDescription: "Play Aram",
       date: "2025-02-25",
       group: null,
-      favorite:false,
+      favorite:true,
       completed:false,
     },
     {
@@ -43,7 +43,9 @@ function App() {
 
   const [dataSelected,setDataSelected]= useState(null)
 
-  console.log(dataSelected)
+  const [dataFavorite,setDataFavorite] = useState(false);
+
+  // console.log(dataSelected)
   
   useEffect(()=>{
     const singleData = task.reduce((acc, date) => {
@@ -68,8 +70,8 @@ function App() {
         <SearchBoard newSearchFilter={setSearch} />
         <AddTaskButton newTask={setTask} />
       </div>
-      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected}/>
-      <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected}/>
+      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite}/>
+      <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite}/>
     </div>
   );
 }
