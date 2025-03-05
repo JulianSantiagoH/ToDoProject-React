@@ -11,24 +11,48 @@ function App() {
       id: 1,
       taskDescription: "Preparate a coffee",
       date: "2025-02-25",
-      group: null,
+      project: 'Cooking',
       favorite:true,
       completed:false,
     },
     {
       id: 2,
       taskDescription: "Play Aram",
-      date: "2025-02-25",
-      group: null,
-      favorite:true,
+      date: "2025-03-25",
+      project: 'Daily',
+      favorite:false,
       completed:false,
     },
     {
       id: 3,
       taskDescription: "Programming the ToDoProgram",
       date: "2025-03-1",
-      group: null,
+      project: null,
+      favorite:true,
+      completed:false,
+    },
+    {
+      id: 4,
+      taskDescription: "Studying React",
+      date: "2025-04-20",
+      project: 'Daily',
       favorite:false,
+      completed:false,
+    },
+    {
+      id: 5,
+      taskDescription: "Cook An Egg",
+      date: "2025-02-25",
+      project: 'Cooking',
+      favorite:false,
+      completed:false,
+    },
+    {
+      id: 6,
+      taskDescription: "Make a Cake",
+      date: "2025-02-25",
+      project: 'Cooking',
+      favorite:true,
       completed:false,
     },
   ]);
@@ -41,9 +65,13 @@ function App() {
 
   const [dataFilter,setDataFilter] = useState([]);
 
+  const [dataFilterProject,setDataFilterProject] = useState([]);
+
   const [dataSelected,setDataSelected]= useState(null)
 
   const [dataFavorite,setDataFavorite] = useState(false);
+  
+  const [dataProject,setDataPronect] = useState(false);
 
   // console.log(dataSelected)
   
@@ -58,10 +86,23 @@ function App() {
     setDataFilter(singleData)
 
   },[task])
+
+  useEffect(()=>{
+    const singleProject = task.reduce((acc, {project}) => {
+      const existingProject = acc.find(item => item.project === project);
+      if(existingProject){
+        existingProject.count +=1
+      }else{
+        acc.push({id:acc.length + 1 ,project, count:1})
+      }
+      return acc;
+    }, []);
+    // console.log(singleData)
+    setDataFilterProject(singleProject)
+
+  },[task])
   
-  // console.log(dataFilter)
-
-
+  console.log(dataFilterProject)
 
   return (
     <div className="containerToDo">
@@ -70,8 +111,8 @@ function App() {
         <SearchBoard newSearchFilter={setSearch} />
         <AddTaskButton newTask={setTask} />
       </div>
-      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite}/>
-      <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite}/>
+      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
+      <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
     </div>
   );
 }

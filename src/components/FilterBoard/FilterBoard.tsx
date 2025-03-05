@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite }) {
+function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite, setDataProject }) {
   const [modalDates,setModalDates]= useState(false)
   const [selectedDate,setSelectedDate]= useState('')
 
@@ -14,10 +14,14 @@ function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite }) 
 
   const handleFavorite=()=>{
     setDataFavorite(true)
+    setDataProject(false)
   }
 
-  console.log(dataFavorite)
- 
+  const handleProjects=()=>{
+    setDataProject(true)
+    setDataFavorite(false)
+  }
+
   return (
     <>
       {selectedDate ? (
@@ -25,7 +29,7 @@ function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite }) 
       ):(
         <button onClick={handleModalView}>All</button>
       )}
-      <button>Projects</button>
+      <button onClick={()=>handleProjects()}>Projects</button>
       <button onClick={()=>handleFavorite()}>Favorite</button>
 
       {modalDates ? (
@@ -33,6 +37,7 @@ function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite }) 
           <button onClick={()=>{
             dataSelected(null);
             setDataFavorite(false);
+            setDataProject(false);
             setSelectedDate('')
           }}>All</button>
           {dateData.map((item) => {
@@ -42,6 +47,7 @@ function FilterBoard({ dateData, dataSelected, setDataFavorite, dataFavorite }) 
                 setSelectedDate(item);
                 handleSelected(item);
                 setDataFavorite(false);
+                setDataProject(false)
               }}><li>{item}</li></button>
               
             </ul>
