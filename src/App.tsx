@@ -12,6 +12,7 @@ function App() {
       taskDescription: "Preparate a coffee",
       date: "2025-02-25",
       project: 'Cooking',
+      difficult:'easy',
       favorite:true,
       completed:false,
     },
@@ -20,14 +21,16 @@ function App() {
       taskDescription: "Play Aram",
       date: "2025-03-25",
       project: 'Daily',
+      difficult:'easy',
       favorite:false,
       completed:false,
     },
     {
       id: 3,
-      taskDescription: "Programming the ToDoProgram",
+      taskDescription: "Programming the ToDoProgram dasdas",
       date: "2025-03-1",
       project: null,
+      difficult:'medium',
       favorite:true,
       completed:false,
     },
@@ -36,7 +39,8 @@ function App() {
       taskDescription: "Studying React",
       date: "2025-04-20",
       project: 'Daily',
-      favorite:false,
+      difficult:'hard',
+      favorite:true,
       completed:false,
     },
     {
@@ -44,6 +48,7 @@ function App() {
       taskDescription: "Cook An Egg",
       date: "2025-02-25",
       project: 'Cooking',
+      difficult:'easy',
       favorite:false,
       completed:false,
     },
@@ -52,8 +57,109 @@ function App() {
       taskDescription: "Make a Cake",
       date: "2025-02-25",
       project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+    {
+      id: 14,
+      taskDescription: "Studying React",
+      date: "2025-04-28",
+      project: 'Daily',
+      difficult:'hard',
       favorite:true,
       completed:false,
+    },
+    {
+      id: 15,
+      taskDescription: "Cook An Egg",
+      date: "2025-02-30",
+      project: 'Cooking',
+      difficult:'easy',
+      favorite:false,
+      completed:false,
+    },
+    {
+      id: 16,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+    {
+      id: 25,
+      taskDescription: "Cook An Egg",
+      date: "2025-02-30",
+      project: 'Cooking',
+      difficult:'easy',
+      favorite:false,
+      completed:false,
+    },
+    {
+      id: 26,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+
+    {
+      id: 36,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+    {
+      id: 21,
+      taskDescription: "Cook An Egg",
+      date: "2025-02-30",
+      project: 'Cooking',
+      difficult:'easy',
+      favorite:false,
+      completed:false,
+    },
+    {
+      id: 22,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+    {
+      id: 35,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
+    },
+    {
+      id: 31,
+      taskDescription: "Cook An Egg",
+      date: "2025-02-30",
+      project: 'Cooking',
+      difficult:'easy',
+      favorite:false,
+      completed:false,
+    },
+    {
+      id: 32,
+      taskDescription: "Make a Cake",
+      date: "2025-02-22",
+      project: 'Cooking',
+      difficult:'hard',
+      favorite:true,
+      completed:true,
     },
   ]);
 
@@ -102,15 +208,16 @@ function App() {
 
   },[task])
   
-  console.log(dataFilterProject)
+  // console.log(dataFilterProject)
 
   return (
-    <div className="containerToDo">
-      <div>
-        <h1 className="titleToDo">My TODOs</h1>
+    <div>
+      <div className="flex items-center phone:justify-center shadow-md shadow-black/25">
+        <h1 className="phone:hidden">My TODOs</h1>
         <SearchBoard newSearchFilter={setSearch} />
-        <AddTaskButton newTask={setTask} />
+        
       </div>
+      <AddTaskButton newTask={setTask} />
       <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
       <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
     </div>

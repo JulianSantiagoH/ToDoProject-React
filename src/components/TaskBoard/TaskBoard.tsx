@@ -2,9 +2,17 @@ import "./TaskBoard.css";
 import checkIcon from "../../assets/icon/checkIcon.png";
 import deleteIcon from "../../assets/icon/deleteIcon.png";
 import favoriteIcon from "../../assets/icon/favoriteIcon.png";
+import favoriteSelected from "../../assets/icon/favoriteIconSelected.png"
 import { useState } from "react";
 
-function TaskBoard({taskData,dateSelected,setTaskData,favoriteSection,dataProject,projectSection,}) {
+function TaskBoard({
+  taskData,
+  dateSelected,
+  setTaskData,
+  favoriteSection,
+  dataProject,
+  projectSection,
+}) {
   const [projectSelected, setProjectSelected] = useState(null);
 
   const testingGettingId = (id) => {
@@ -29,41 +37,45 @@ function TaskBoard({taskData,dateSelected,setTaskData,favoriteSection,dataProjec
 
   const favoriteData = taskData.filter((item) => item.favorite);
 
-  console.log(projectSelected);
+  // console.log(projectSelected);
 
-  // console.log(taskData)
+  // console.log(favoriteData);
 
   return (
-    <div className="containerTask">
+    <div className="phone:flex flex-col mt-5 max-h-160 overflow-y-auto">
       {favoriteSection === true ? (
         favoriteData.map((item) => {
           return (
-            <div className="taskBody" key={item.id}>
+            <div className={`phone:flex relative mb-5 p-2 ml-3.5 items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
               <button
-                className="checkButton"
+                className="phone:ml-5"
                 onClick={() => {
                   testingGettingId(item.id);
                 }}
               >
-                <img src={checkIcon} alt="Check Button" />
+                <img className={`border p-1 rounded-2xl ${item.completed === true ? 'bg-[#71dfff]': ''}`} src={checkIcon} alt="Check Button" />
               </button>
-              <h1>{item.taskDescription}</h1>
-              <button
-                className="favoriteButton"
-                onClick={() => favoriteModifier(item.id)}
-              >
-                <img src={favoriteIcon} alt="Favorite Button" />
-              </button>
-              <button
-                className="deleteButton"
-                onClick={() => deleteTask(item.id)}
-              >
-                <img
-                  className="iconButton"
-                  src={deleteIcon}
-                  alt="Delete Button"
-                />
-              </button>
+              <div className="phone:ml-4.5">
+                <h1 className={`${item.completed === true ? 'line-through' : ''} phone:max-w-55 text-lg font-serif`}>{item.taskDescription}</h1>
+                <h2 className="phone:max-w-55 text-xs font-serif text-[#9A9EA1]">{`${item.date} ${
+                  item.project === null ? "" : `. ${item.project}`
+                }`}</h2>
+              </div>
+              <div className="phone: absolute right-0 mr-10 z-1">
+                <button className="phone:mr-4" onClick={() => favoriteModifier(item.id)}>
+                  <img className="phone:w-5" src={item.favorite === true ? favoriteSelected : favoriteIcon   } alt="Favorite Button" />
+                </button>
+                <button
+                  className="deleteButton"
+                  onClick={() => deleteTask(item.id)}
+                >
+                  <img
+                    className="iconButton"
+                    src={deleteIcon}
+                    alt="Delete Button"
+                  />
+                </button>
+              </div>
 
               {/* {item.completed === true ? (
                     <h1>Completed</h1>
@@ -82,7 +94,7 @@ function TaskBoard({taskData,dateSelected,setTaskData,favoriteSection,dataProjec
       ) : dataProject === true ? (
         projectSelected !== null ? (
           <>
-            <button onClick={()=>setProjectSelected(null)}>Back</button>
+            <button onClick={() => setProjectSelected(null)}>Back</button>
 
             {taskData
               .filter((data) => data.project === projectSelected)
