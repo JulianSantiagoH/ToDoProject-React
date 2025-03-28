@@ -4,6 +4,8 @@ import SearchBoard from "./components/SearchBoard/SearchBoard";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
 import AddTaskButton from "./components/AddTaskButton/AddTaskButton";
 import FilterBoard from "./components/FilterBoard/FilterBoard";
+import lightMode from "./assets/icon/lightModeIcon.png"
+import nightMode from "./assets/icon/nightModeIcon.png"
 
 function App() {
   const [task, setTask] = useState([
@@ -20,7 +22,7 @@ function App() {
       id: 2,
       taskDescription: "Play Aram",
       date: "2025-03-25",
-      project: 'Daily',
+      project: 'Playing',
       difficult:'easy',
       favorite:false,
       completed:false,
@@ -29,7 +31,7 @@ function App() {
       id: 3,
       taskDescription: "Programming the ToDoProgram dasdas",
       date: "2025-03-1",
-      project: null,
+      project: 'Studying',
       difficult:'medium',
       favorite:true,
       completed:false,
@@ -212,12 +214,14 @@ function App() {
 
   return (
     <div>
-      <div className="flex items-center phone:justify-center shadow-md shadow-black/25">
+      <div className="flex items-center phone: justify-around shadow-md shadow-black/25">
         <h1 className="phone:hidden">My TODOs</h1>
+        <button className="phone:ml-2"><img src={lightMode} alt="" /></button>
         <SearchBoard newSearchFilter={setSearch} />
+        <AddTaskButton newTask={setTask} />
         
       </div>
-      <AddTaskButton newTask={setTask} />
+
       <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
       <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
     </div>

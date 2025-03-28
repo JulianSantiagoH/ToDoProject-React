@@ -32,9 +32,11 @@ function FilterBoard({
   };
   
 
+
   return (
-    <>
-      <div className="phone:fixed h-15 bottom-0 left-0 w-full flex justify-around inset-shadow-2xs inset-shadow-black/25 bg-white ">
+    <> 
+      {modalDates? <div onClick={()=>handleModalView()} className="absolute z-90 bg-white/0 w-full h-full top-0"></div>:null}
+      <div className="phone:absolute z-89 h-15 bottom-0 left-0 w-full flex justify-around inset-shadow-2xs inset-shadow-black/25 bg-white ">
         {selectedDate ? (
           <button onClick={handleModalView}>
             <span className="inline phone:hidden">{selectedDate}</span>
@@ -63,7 +65,8 @@ function FilterBoard({
           </span>
         </button>
       </div>
-
+      
+      
       {modalDates ? (
         <div className="phone:absolute z-99 flex flex-col items-center bottom-15 left-4 border-1 w-30 h-50 overflow-y-auto border-[#D5D5D5] bg-white">
           <button
