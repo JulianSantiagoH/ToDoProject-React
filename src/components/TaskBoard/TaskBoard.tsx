@@ -32,7 +32,7 @@ function TaskBoard({
   };
 
   const deleteTask = (id) => {
-    setTaskData(taskData.filter((data) => data.id !== id));
+    setTaskData((tasks)=>tasks.filter((data) => data.id !== id));
   };
 
   const favoriteData = taskData.filter((item) => item.favorite);

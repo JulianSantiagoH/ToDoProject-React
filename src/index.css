@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --breakpoint-phone: 0rem;
     --breakpoint-tablet: 54rem;

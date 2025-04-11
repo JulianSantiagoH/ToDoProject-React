@@ -4,8 +4,9 @@ import SearchBoard from "./components/SearchBoard/SearchBoard";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
 import AddTaskButton from "./components/AddTaskButton/AddTaskButton";
 import FilterBoard from "./components/FilterBoard/FilterBoard";
-import lightMode from "./assets/icon/lightModeIcon.png"
-import nightMode from "./assets/icon/nightModeIcon.png"
+import NightMode from "./assets/icon/nightModeIcon.png"
+import LightModeIcon from "./assets/icon/LightMode.icon"
+import NightModeIcon from "./assets/icon/NightMode.icon";
 
 function App() {
   const [task, setTask] = useState([
@@ -167,6 +168,24 @@ function App() {
 
   const [search, setSearch] = useState("");
 
+  const [isDark, setIsDark] = useState(()=>{
+    return localStorage.getItem('theme')==='dark';
+  })
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark);
+  };
+
   const searchingTask = task.filter((task) =>
     task.taskDescription.toLowerCase().includes(search.toLowerCase())
   );
@@ -214,13 +233,16 @@ function App() {
 
   return (
     <div>
-      <div className="flex items-center phone: justify-around shadow-md shadow-black/25">
+      <div className="flex items-center dark:bg-[#505050] phone: justify-around shadow-md shadow-black/25">
         <h1 className="phone:hidden">My TODOs</h1>
-        <button className="phone:ml-2"><img src={lightMode} alt="" /></button>
+        <button onClick={toggleDarkMode} className="phone:ml-2 w-10 w-10">{isDark ? <LightModeIcon /> : <NightModeIcon />}</button>
         <SearchBoard newSearchFilter={setSearch} />
-        <AddTaskButton newTask={setTask} />
-        
+        <div>
+          <AddTaskButton newTask={setTask} Task={task} />
+        </div>
       </div>
+
+      
 
       <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
       <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
