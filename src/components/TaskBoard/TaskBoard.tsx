@@ -1,8 +1,8 @@
 import "./TaskBoard.css";
-import checkIcon from "../../assets/icon/checkIcon.png";
-import deleteIcon from "../../assets/icon/deleteIcon.png";
-import favoriteIcon from "../../assets/icon/favoriteIcon.png";
+import CheckIcon from "../../assets/icon/Check.Icon";
+import FavoriteIcon from "../../assets/icon/Favorite.Icon";
 import favoriteSelected from "../../assets/icon/favoriteIconSelected.png"
+import DeleteIcon from "../../assets/icon/Delete.icon";
 import { useState } from "react";
 
 function TaskBoard({
@@ -15,17 +15,17 @@ function TaskBoard({
 }) {
   const [projectSelected, setProjectSelected] = useState(null);
 
-  const testingGettingId = (id) => {
-    setTaskData(
-      taskData.map((data) =>
+  const testingGettingId = (id:number) => {
+    setTaskData((tasks)=>
+      tasks.map((data) =>
         data.id === id ? { ...data, completed: !data.completed } : data
       )
     );
   };
 
   const favoriteModifier = (id) => {
-    setTaskData(
-      taskData.map((data) =>
+    setTaskData((tasks)=>
+      tasks.map((data) =>
         data.id === id ? { ...data, favorite: !data.favorite } : data
       )
     );
@@ -42,18 +42,18 @@ function TaskBoard({
   // console.log(favoriteData);
 
   return (
-    <div className="phone:flex flex-col mt-5 max-h-160 overflow-y-auto">
+    <div className="phone:flex flex-col mt-5 max-h-160 ml-3.5 overflow-y-auto">
       {favoriteSection === true ? (
         favoriteData.map((item) => {
           return (
-            <div className={`phone:flex relative mb-5 p-2 ml-3.5 items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
+            <div className={`phone:flex relative mb-5 p-2 ml-3.5 dark:bg-[#2c2c2c] dark:text-[#e0e0e0] items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
               <button
                 className="phone:ml-5"
                 onClick={() => {
                   testingGettingId(item.id);
                 }}
               >
-                <img className={`border p-1 rounded-2xl ${item.completed === true ? 'bg-[#71dfff]': ''}`} src={checkIcon} alt="Check Button" />
+                <CheckIcon className={`border rounded-2xl dark:text-white ${item.completed === true ? 'bg-[#71dfff] dark:bg-[#14a0ca]': ''}`} />
               </button>
 
               <div className="phone:ml-4.5">
@@ -63,19 +63,15 @@ function TaskBoard({
                 }`}</h2>
               </div>
 
-              <div className="phone: absolute right-0 mr-10 z-1">
+              <div className="phone: flex absolute right-0 mr-8 z-1">
                 <button className="phone:mr-4" onClick={() => favoriteModifier(item.id)}>
-                  <img className="phone:w-5" src={item.favorite === true ? favoriteSelected : favoriteIcon   } alt="Favorite Button" />
+                    {item.favorite === true ? <img className="w-5" src={favoriteSelected} alt="favoriteSelected" /> : <FavoriteIcon />   }
                 </button>
                 <button
                   className="deleteButton"
                   onClick={() => deleteTask(item.id)}
                 >
-                  <img
-                    className="iconButton"
-                    src={deleteIcon}
-                    alt="Delete Button"
-                  />
+                  <DeleteIcon className="dark:text-white" />
                 </button>
               </div>
 
@@ -104,14 +100,14 @@ function TaskBoard({
               .filter((data) => data.project === projectSelected)
               .map((item) => {
                 return (
-                  <div className={`phone:flex relative mb-5 p-2 ml-3.5 items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
+                  <div className={`phone:flex relative mb-5 p-2 ml-3.5 dark:bg-[#2c2c2c] dark:text-[#e0e0e0] items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
                     <button
                       className="phone:ml-5"
                       onClick={() => {
                         testingGettingId(item.id);
                       }}
                     >
-                      <img className={`border p-1 rounded-2xl ${item.completed === true ? 'bg-[#71dfff]': ''}`} src={checkIcon} alt="Check Button" />
+                      <CheckIcon className={`border rounded-2xl dark:text-white ${item.completed === true ? 'bg-[#71dfff] dark:bg-[#14a0ca]': ''}`} />
                     </button>
 
                     <div className="phone:ml-4.5">
@@ -123,17 +119,13 @@ function TaskBoard({
 
                     <div className="phone: absolute right-0 mr-10 z-1">
                       <button className="phone:mr-4" onClick={() => favoriteModifier(item.id)}>
-                        <img className="phone:w-5" src={item.favorite === true ? favoriteSelected : favoriteIcon   } alt="Favorite Button" />
+                        {item.favorite === true ? <img className="w-5" src={favoriteSelected}></img> : <FavoriteIcon />  } 
                       </button>
                       <button
                         className="deleteButton"
                         onClick={() => deleteTask(item.id)}
                       >
-                      <img
-                        className="iconButton"
-                        src={deleteIcon}
-                        alt="Delete Button"
-                        />
+                      <DeleteIcon className="dark:text-white"  />
                       </button>
                     </div>
                   </div>
@@ -141,11 +133,11 @@ function TaskBoard({
               })}
           </>
         ) : (
-          <div className="phone:grid grid-cols-3 mt-9 place-items-center gap-y-10">
+          <div className="dark:text-white phone:grid grid-cols-3 mt-9 place-items-center gap-y-10 " >
             {projectSection.map((item) => {
               if (item.project !== null) {
                 return (
-                  <div className="phone:flex flex-col justify-center items-center w-22 h-22 shadow-lg border-3 border-gray-50" key={item.id}>
+                  <div className="dark:bg-[#2c2c2c] phone:flex flex-col justify-center items-center w-22 h-22 shadow-lg border-3 border-gray-50" key={item.id}>
                     <button
                       className="w-full h-full cursor-pointer font-serif truncate"
                       value={item.project}
@@ -165,14 +157,14 @@ function TaskBoard({
         Object.values(
           taskData.map((item) => {
             return (
-              <div className={`phone:flex relative mb-5 p-2 ml-3.5 items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
+              <div className={`phone:flex relative mb-5 p-2 ml-3.5 dark:bg-[#2c2c2c] dark:text-[#e0e0e0] items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
                 <button
                   className="phone:ml-5"
                   onClick={() => {
                     testingGettingId(item.id);
                   }}
                 >
-                  <img className={`border p-1 rounded-2xl ${item.completed === true ? 'bg-[#71dfff]': ''}`} src={checkIcon} alt="Check Button" />
+                  <CheckIcon className={`border rounded-2xl dark:text-white ${item.completed === true ? 'bg-[#71dfff] dark:bg-[#14a0ca]': ''}`} />
                 </button>
 
                 <div className="phone:ml-4.5">
@@ -182,19 +174,15 @@ function TaskBoard({
                   }`}</h2>
                 </div>
 
-                <div className="phone: absolute right-0 mr-10 z-1">
+                <div className="phone: flex absolute right-0 mr-10 z-1">
                   <button className="phone:mr-4" onClick={() => favoriteModifier(item.id)}>
-                    <img className="phone:w-5" src={item.favorite === true ? favoriteSelected : favoriteIcon   } alt="Favorite Button" />
+                    {item.favorite === true ? <img className="w-5" src={favoriteSelected} alt="favoriteSelected" /> : <FavoriteIcon />   } 
                   </button>
                   <button
                     className="deleteButton"
                     onClick={() => deleteTask(item.id)}
                   >
-                    <img
-                      className="iconButton"
-                      src={deleteIcon}
-                      alt="Delete Button"
-                    />
+                    <DeleteIcon className="dark:text-white"  />
                   </button>
                 </div>
               </div>
@@ -206,14 +194,14 @@ function TaskBoard({
           .filter((date) => date.date === dateSelected)
           .map((item) => {
             return (
-              <div className={`phone:flex relative mb-5 p-2 ml-3.5 items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
+              <div className={`phone:flex relative mb-5 p-2 ml-3.5 dark:bg-[#2c2c2c] dark:text-[#e0e0e0] items-center ${item.completed === true ? 'bg-green-300/50' : ''} ${item.difficult === 'easy'?'border-l-3 border-green-300':item.difficult === 'medium'?'border-l-3 border-yellow-300': item.difficult === 'hard'?'border-l-3 border-red-300':''}`} key={item.id}>
                 <button
                   className="phone:ml-5"
                   onClick={() => {
                     testingGettingId(item.id);
                   }}
                 >
-                  <img className={`border p-1 rounded-2xl ${item.completed === true ? 'bg-[#71dfff]': ''}`} src={checkIcon} alt="Check Button" />
+                 <CheckIcon className={`border rounded-2xl dark:text-white ${item.completed === true ? 'bg-[#71dfff] dark:bg-[#14a0ca]': ''}`} />
                 </button>
 
                 <div className="phone:ml-4.5">
@@ -225,17 +213,13 @@ function TaskBoard({
 
                 <div className="phone: absolute right-0 mr-10 z-1">
                   <button className="phone:mr-4" onClick={() => favoriteModifier(item.id)}>
-                    <img className="phone:w-5" src={item.favorite === true ? favoriteSelected : favoriteIcon   } alt="Favorite Button" />
+                    {item.favorite === true ? <img className="w-5" src={favoriteSelected} alt="favoriteSelected" /> : <FavoriteIcon />   }
                   </button>
                   <button
                     className="deleteButton"
                     onClick={() => deleteTask(item.id)}
                   >
-                    <img
-                      className="iconButton"
-                      src={deleteIcon}
-                      alt="Delete Button"
-                    />
+                    <DeleteIcon className="dark:text-white"  />
                   </button>
                 </div>
               </div>

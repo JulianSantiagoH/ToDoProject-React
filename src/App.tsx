@@ -4,7 +4,6 @@ import SearchBoard from "./components/SearchBoard/SearchBoard";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
 import AddTaskButton from "./components/AddTaskButton/AddTaskButton";
 import FilterBoard from "./components/FilterBoard/FilterBoard";
-import NightMode from "./assets/icon/nightModeIcon.png"
 import LightModeIcon from "./assets/icon/LightMode.icon"
 import NightModeIcon from "./assets/icon/NightMode.icon";
 
@@ -233,7 +232,7 @@ function App() {
 
   return (
     <div>
-      <div className="flex items-center dark:bg-[#505050] phone: justify-around shadow-md shadow-black/25">
+      <div className="flex items-center dark:bg-[#121212] phone: justify-around shadow-md shadow-black/25">
         <h1 className="phone:hidden">My TODOs</h1>
         <button onClick={toggleDarkMode} className="phone:ml-2 w-10 w-10">{isDark ? <LightModeIcon /> : <NightModeIcon />}</button>
         <SearchBoard newSearchFilter={setSearch} />
@@ -244,7 +243,7 @@ function App() {
 
       
 
-      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
+      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect} idDark={isDark}/>
       <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
     </div>
   );

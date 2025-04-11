@@ -65,7 +65,7 @@ function AddTaskButton({ newTask, Task }) {
 
   return (
     <>
-      <button className="phone: bg-[#B5E9FF] p-2 mr-2 rounded-4xl " onClick={()=>{openModal(),setTextSaved('')}}>
+      <button className="dark:bg-[#53c1e2] phone: bg-[#B5E9FF] p-2 mr-2 rounded-4xl " onClick={()=>{openModal(),setTextSaved('')}}>
         <img src={addButton} alt="" />
       </button>
 
@@ -75,20 +75,22 @@ function AddTaskButton({ newTask, Task }) {
 
       {isModalView ? (
        
-         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center text-center bg-white z-101 overflow-auto phone: w-80 h-150  ">
+         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center text-center bg-white z-101 dark:text-[#bebebe] dark:bg-[#333333] overflow-auto phone: w-80 h-150  ">
 
           <h1 className="mb-6 font-bold phone:text-2xl">Add ToDo</h1>
           
 
           <div>
             <h3 className="mb-2">Add a Description</h3>
-            <input className="text-center mb-5 border phone: w-70 h-20 focus: outline-blue-500 " type="text" placeholder="Enter a New Task" onChange={e=>setTextSaved(e.target.value)} />
+            <input className="text-center mb-5 border dark:text-[#9A9EA1] phone: w-70 h-20 focus: outline-blue-500 " type="text" placeholder="Enter a New Task" onChange={e=>setTextSaved(e.target.value)} />
           </div>
 
           <div>
             <h3 className="mb-2">Add/Select a Project</h3>
             <Select
-              className="mb-3" 
+
+            
+              className="mb-3 dark:text-[#000000] " 
               name="" 
               options={singleProjectSave} 
               value={projectSaved}
@@ -100,7 +102,7 @@ function AddTaskButton({ newTask, Task }) {
           
           <div>
             <h3 className="mb-2">Add a Date</h3>
-            <button className="rounded-full bg-blue-300 p-2 mb-3 hover:bg-blue-400 " onClick={()=>handleCalendar()}>Click Here</button>
+            <button className="rounded-full bg-blue-300 p-2 mb-3 hover:bg-blue-400 dark:bg-blue-500 dark:text-white " onClick={()=>handleCalendar()}>Click Here</button>
             {openCalendar ? (
               <DayPicker
               animate
@@ -115,7 +117,7 @@ function AddTaskButton({ newTask, Task }) {
           <div>
             <h2 className="mb-3">Add a Difficulty</h2>
             <Select 
-              className="mb-3"
+              className="mb-3 dark:text-[#000000]"
               name="" 
               value={difficultySaved}
               options={tasksDificulty} 
@@ -130,9 +132,9 @@ function AddTaskButton({ newTask, Task }) {
           
           
           <div className="flex gap-10">
-          <button className="rounded-full bg-red-400 w-20 h-10 mb-3 hover:bg-red-500" onClick={()=>{openModal(),setTextSaved('')}}>Cancel</button>
+          <button className="rounded-full bg-red-400 w-20 h-10 mb-3 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-600 dark: text-white" onClick={()=>{openModal(),setTextSaved('')}}>Cancel</button>
 
-          <button className="rounded-full bg-green-400 w-20 h-10 mb-3 hover:bg-green-500" onClick={()=>{
+          <button className="rounded-full bg-green-400 w-20 h-10 mb-3 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-greem-600 dark:text-white " onClick={()=>{
             
             if(textSaved.trim() ==='' || difficultyValueSelected === undefined || selectedDateCalendar === undefined )return;
             newTask((previousContent)=> [...previousContent,{ id:previousContent.length+1, taskDescription:textSaved, date:selectedDateCalendar?.toLocaleDateString('ja-JP'),project:projectValueSelected,difficult:difficultyValueSelected,favorite:false,completed:false}]);
