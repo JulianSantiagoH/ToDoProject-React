@@ -16,7 +16,14 @@ function AddTaskButton({ newTask, Task }) {
 
   const [openCalendar,setOpenCalendar]= useState(false);
 
-  const [selectedDateCalendar, setSelectedDateCalendar]= useState<Date>()
+  const [selectedDateCalendar, setSelectedDateCalendar]= useState('')
+
+  const deleteModalData = ()=>{
+    setTextSaved('')
+    setProjectSaved('')
+    setDifficultySaved('')
+    setSelectedDateCalendar('')
+  }
 
   useEffect(() => {
     if (selectedDateCalendar) {
@@ -65,7 +72,7 @@ function AddTaskButton({ newTask, Task }) {
 
   return (
     <>
-      <button className="dark:bg-[#53c1e2] phone: bg-[#B5E9FF] p-2 mr-2 rounded-4xl " onClick={()=>{openModal(),setTextSaved('')}}>
+      <button className="dark:bg-[#53c1e2] phone: bg-[#B5E9FF] p-2 mr-2 rounded-4xl cursor-pointer " onClick={()=>{openModal(),setTextSaved('')}}>
         <img src={addButton} alt="" />
       </button>
 
@@ -102,7 +109,8 @@ function AddTaskButton({ newTask, Task }) {
           
           <div>
             <h3 className="mb-2">Add a Date</h3>
-            <button className="rounded-full bg-blue-300 p-2 mb-3 hover:bg-blue-400 dark:bg-blue-500 dark:text-white " onClick={()=>handleCalendar()}>Click Here</button>
+            <button className="rounded-full bg-blue-300 p-2 mb-3 hover:bg-blue-400 dark:bg-blue-500 dark:text-white cursor-pointer
+             " onClick={()=>handleCalendar()}>Click Here</button>
             {openCalendar ? (
               <DayPicker
               animate
@@ -132,13 +140,14 @@ function AddTaskButton({ newTask, Task }) {
           
           
           <div className="flex gap-10">
-          <button className="rounded-full bg-red-400 w-20 h-10 mb-3 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-600 dark: text-white" onClick={()=>{openModal(),setTextSaved('')}}>Cancel</button>
+          <button className="rounded-full bg-red-400 w-20 h-10 mb-3 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-600 dark: text-white cursor-pointer" onClick={()=>{openModal(), deleteModalData()}}>Cancel</button>
 
-          <button className="rounded-full bg-green-400 w-20 h-10 mb-3 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-greem-600 dark:text-white " onClick={()=>{
+          <button className="rounded-full bg-green-400 w-20 h-10 mb-3 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-greem-600 dark:text-white cursor-pointer" onClick={()=>{
             
             if(textSaved.trim() ==='' || difficultyValueSelected === undefined || selectedDateCalendar === undefined )return;
             newTask((previousContent)=> [...previousContent,{ id:previousContent.length+1, taskDescription:textSaved, date:selectedDateCalendar?.toLocaleDateString('ja-JP'),project:projectValueSelected,difficult:difficultyValueSelected,favorite:false,completed:false}]);
             setIsModalView(false);
+            deleteModalData()
           }}>Accept</button>
 
           </div>

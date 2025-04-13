@@ -5,8 +5,10 @@
 
 @theme {
     --breakpoint-phone: 0rem;
-    --breakpoint-tablet: 54rem;
-    --breakpoint-computer: 82rem;
+    --breakpoint-computer: 64rem;
+    --breakpoint-porcentage: 20%;
     --breakpoint-2xl: 100rem;
     --breakpoint-3xl: 120rem;
   }
+
+  

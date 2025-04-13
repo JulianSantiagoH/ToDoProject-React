@@ -232,12 +232,13 @@ function App() {
 
   return (
     <div>
-      <div className="flex items-center dark:bg-[#121212] phone: justify-around shadow-md shadow-black/25">
-        <h1 className="phone:hidden">My TODOs</h1>
-        <button onClick={toggleDarkMode} className="phone:ml-2 w-10 w-10">{isDark ? <LightModeIcon /> : <NightModeIcon />}</button>
+      <div className="flex items-center dark:bg-[#121212]phone:justify-around shadow-md shadow-black/25 computer: justify-around">
+        <h1 className="phone:hidden computer:inline font-bold text-xl dark:text-white ">My TODOs</h1>
+        <button onClick={toggleDarkMode} className="phone:ml-2 inline computer:hidden cursor-pointer">{isDark ? <LightModeIcon /> : <NightModeIcon />}</button>
         <SearchBoard newSearchFilter={setSearch} />
-        <div>
+        <div className="flex items-center justify-center gap-10">
           <AddTaskButton newTask={setTask} Task={task} />
+          <button onClick={toggleDarkMode} className="computer:inline  phone:hidden cursor-pointer">{isDark ? <LightModeIcon /> : <NightModeIcon />}</button>
         </div>
       </div>
 

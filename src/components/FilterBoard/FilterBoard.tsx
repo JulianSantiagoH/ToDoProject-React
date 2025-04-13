@@ -39,37 +39,25 @@ function FilterBoard({
       {modalDates? <div onClick={()=>handleModalView()} className="absolute z-90 bg-white/0 w-full h-full top-0"></div>:null}
       <div className="dark:bg-[#121212] phone:absolute z-89 h-15 bottom-0 left-0 w-full flex justify-around inset-shadow-2xs inset-shadow-black/25 bg-white ">
         {selectedDate ? (
-          <button onClick={handleModalView}>
-            <span className="inline phone:hidden">{selectedDate}</span>
-            <span className="hidden phone:inline">
+          <button onClick={handleModalView} className="cursor-pointer">
               <CalendarIcon className="text-black dark:text-white" />
-            </span>
           </button>
         ) : (
-          <button onClick={handleModalView}>
-            <span className="inline phone:hidden">All</span>
-            <span className="hidden phone:inline">
+          <button onClick={handleModalView} className="cursor-pointer">
               <CalendarIcon className="text-black dark:text-white"/>
-            </span>
           </button>
         )}
-        <button onClick={() => handleProjects()}>
-          <span className="inline phone:hidden">Projects</span>
-          <span className="hidden phone:inline">
+        <button onClick={() => handleProjects()} className="cursor-pointer">
             <ProjectIcon className="text-black dark:text-white" />
-          </span>
         </button>
-        <button onClick={() => handleFavorite()}>
-          <span className="inline phone:hidden">Favorite</span>
-          <span className="hidden phone:inline">
+        <button onClick={() => handleFavorite()} className="cursor-pointer">
             <FavoriteSectionIcon className="text-black dark:text-white" />
-          </span>
         </button>
       </div>
       
       
       {modalDates ? (
-        <div className="phone:absolute z-99 flex flex-col items-center bottom-15 left-4 border-1 w-30 h-50 overflow-y-auto border-[#D5D5D5] bg-white dark:bg-[#1e1e1e] dark:text-[#e0e0e0] ">
+        <div className=" computer:w-50 computer:h-70 computer:left-1/9 phone:absolute z-99 flex flex-col items-center bottom-15 left-1/15 border-1 w-40 h-50 overflow-y-auto border-[#D5D5D5] bg-white dark:bg-[#1e1e1e] dark:text-[#e0e0e0] cursor-pointer ">
           <button
             className="phone:mt-2.5 focus:font-bold mb-1"
             onClick={() => {

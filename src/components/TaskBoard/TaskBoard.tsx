@@ -42,7 +42,7 @@ function TaskBoard({
   // console.log(favoriteData);
 
   return (
-    <div className="phone:flex flex-col mt-5 max-h-160 ml-3.5 overflow-y-auto">
+    <div className="flex flex-col mt-5 max-h-160 ml-3.5 overflow-y-auto computer:max-w-200 computer:mr-auto computer:ml-auto computer:mt-10 computer:max-h-170">
       {favoriteSection === true ? (
         favoriteData.map((item) => {
           return (
@@ -133,11 +133,11 @@ function TaskBoard({
               })}
           </>
         ) : (
-          <div className="dark:text-white phone:grid grid-cols-3 mt-9 place-items-center gap-y-10 " >
+          <div className="dark:text-white grid grid-cols-3 mt-9 place-items-center gap-y-10 computer:grid-cols-4" >
             {projectSection.map((item) => {
               if (item.project !== null) {
                 return (
-                  <div className="dark:bg-[#2c2c2c] phone:flex flex-col justify-center items-center w-22 h-22 shadow-lg border-3 border-gray-50" key={item.id}>
+                  <div className="dark:bg-[#2c2c2c] flex flex-col justify-center items-center w-22 h-22 shadow-lg border-3 border-gray-50 computer:w-30 computer:h-30" key={item.id}>
                     <button
                       className="w-full h-full cursor-pointer font-serif truncate"
                       value={item.project}
