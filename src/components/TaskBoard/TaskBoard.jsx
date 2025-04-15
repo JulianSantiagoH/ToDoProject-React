@@ -1,4 +1,3 @@
-import "./TaskBoard.css";
 import CheckIcon from "../../assets/icon/Check.Icon";
 import FavoriteIcon from "../../assets/icon/Favorite.Icon";
 import favoriteSelected from "../../assets/icon/favoriteIconSelected.png"
@@ -15,7 +14,7 @@ function TaskBoard({
 }) {
   const [projectSelected, setProjectSelected] = useState(null);
 
-  const testingGettingId = (id:number) => {
+  const testingGettingId = (id) => {
     setTaskData((tasks)=>
       tasks.map((data) =>
         data.id === id ? { ...data, completed: !data.completed } : data
@@ -143,7 +142,7 @@ function TaskBoard({
                       value={item.project}
                       onClick={(e) => setProjectSelected(e.target.value)}
                     >
-                      {item.project}
+                      {item.project? item.project : 'Without Project'}
                     </button>
                     <h2 className="font-serif text-xs mb-1">{`${item.count} ToDo`}</h2>
                   </div>

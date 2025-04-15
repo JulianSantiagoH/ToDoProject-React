@@ -1,5 +1,4 @@
 import searchButton from "../../assets/icon/SearchIcon.png";
-import './SearchBoard.css'
 
 function SearchBoard({newSearchFilter}) {
   return (

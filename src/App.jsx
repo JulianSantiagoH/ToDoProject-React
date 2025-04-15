@@ -7,6 +7,7 @@ import FilterBoard from "./components/FilterBoard/FilterBoard";
 import LightModeIcon from "./assets/icon/LightMode.icon"
 import NightModeIcon from "./assets/icon/NightMode.icon";
 
+
 function App() {
   const [task, setTask] = useState(()=>{
     const savedTasks = localStorage.getItem("tasks");
@@ -67,6 +68,9 @@ function App() {
 
   },[task])
 
+
+ 
+
   useEffect(()=>{
     const singleProject = task.reduce((acc, {project}) => {
       const existingProject = acc.find(item => item.project === project);
@@ -98,7 +102,7 @@ function App() {
 
       
 
-      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect} idDark={isDark}/>
+      <FilterBoard dateData ={dataFilter} dataSelected={setDataSelected} setDataFavorite={setDataFavorite} dataFavorite={dataFavorite} setDataProject={setDataPronect}/>
       <TaskBoard taskData={searchingTask} setTaskData={setTask} dateSelected={dataSelected} favoriteSection={dataFavorite} dataProject={dataProject} projectSection={dataFilterProject}/>
     </div>
   );
